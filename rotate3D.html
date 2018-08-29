@@ -16,7 +16,7 @@ var canvas = document.getElementById('canvas'),
   h = canvas.height = window.innerHeight,
   stars=[],
   maxstar=1000,
-  falllength=1000,
+  falllength=800,
   timePassed=0,
   cosz=0.01,
   sinz=0.01;
@@ -84,7 +84,7 @@ star.prototype={
     ctx.drawImage(canvas2,10,10,10,10);
   }
 }
-var rotateX=function(stars,angleX1=0.01){
+var rotateX=function(stars,angleX1=1){
   var cos = Math.cos(angleX1);
   var sin = Math.sin(angleX1);
   for (var i = stars.length - 1; i >= 0; i--) {
@@ -142,9 +142,9 @@ var animation=function(){
     rotate3D_Y(stars[i],oldy)
     oldz=angleX;
     oldy=angleY;
-    var scale=falllength/(falllength+stars[i].z)-0.5;
-    ctx.drawImage(canvas2, stars[i].x+w/2, stars[i].y+h/2, 20*scale, 20*scale);
-    //stars[i].timePassed+=0.001; 
+    var scale=falllength/(falllength+stars[i].z);
+    ctx.drawImage(canvas2, stars[i].x*scale+w/2, stars[i].y*scale+h/2, 20*scale, 20*scale);
+    //stars[i].timePassed+=0.001;
     rotate3D_Z(stars[i],-oldz)
     rotate3D_Y(stars[i],-oldy)
   } 
